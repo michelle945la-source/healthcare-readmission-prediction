@@ -14,10 +14,17 @@
 # Clear environment
 rm(list = ls())
 
+# Set working directory
+# Note: This is used for local development. If sharing the project,
+# run the script from the project root folder.
+setwd("~/Desktop/healthcare-readmission-prediction")
+
+# Confirm working directory
+getwd()
+
 # Load packages
 library(readr)
 library(dplyr)
-library(janitor)
 library(tidyr)
 library(janitor)
 
@@ -27,6 +34,11 @@ library(janitor)
 
 raw_data_path <- "data/raw/diabetic_data.csv"
 processed_data_path <- "data/processed/diabetes_readmission_cleaned.csv"
+
+# Check whether raw data exists
+if (!file.exists(raw_data_path)) {
+  stop("Raw data file not found. Please save diabetic_data.csv in data/raw/.")
+}
 
 # -----------------------------
 # 3. Import raw data
